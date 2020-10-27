@@ -3,12 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" id="viewport"
-        content="width=width-device,initial-scale=1.0,minimum-scale=0.5,maximum-scale=0.5,user-scalable=no">
+    <meta name="viewport" id="view" content="width=device-width" />
     <title>Document</title>
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <script>
+        !(function () {
+            var view = screen.width / 750;
+            document.getElementById('view').content = 'width=750,initial-scale=' + view + ',minimum-scale=' +
+                view + ',maximum-scale=' + view + ',user-scalable=no'
+        })()
+    </script>
 </head>
 
 <body onmousewheel="return false;">
@@ -88,11 +93,22 @@
 <script script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $(".section").css({
-            'height': window.innerHeight + 'px'
-        })
-    });
+    $(window).on('resize', function () {
+        // 设置Iframe窗口大小
+        configIframe();
+    }).resize();
+
+    function configIframe() {
+        var $content = $('#content');
+        $content.height($(this).height());
+        $content.width($(this).width());
+        $content.find('iframe').each(function () {
+            $(this).height($content.height());
+            $(this).width($content.width());
+        });
+
+    }
+
     var nowpage = 0;
     //给最大的盒子增加事件监听
     $("#content").swipe({
