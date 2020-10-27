@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-     <!--<meta name="viewport" id="viewport"
-        content="width=width-device,initial-scale=1.0,minimum-scale=0.5,maximum-scale=0。5,user-scalable=no"> -->
+    <meta name="viewport" id="viewport"
+        content="width=width-device,initial-scale=1.0,minimum-scale=0.5,maximum-scale=0.5,user-scalable=no">
     <title>Document</title>
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/index.css">
@@ -88,8 +88,6 @@
 <script script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script>
-    var view_num = window.screen.availWidth / 750;
-    document.getElementById("content").setAttribute('content', 'user-scalable=no, width=750, minimum-scale=' + view_num + ', initial-scale=' + view_num + ', maximum-scale=' + view_num + '');
     $(window).on('resize', function () {
         // 设置Iframe窗口大小
         configIframe();
