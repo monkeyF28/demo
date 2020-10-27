@@ -88,25 +88,10 @@
 <script script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script>
-    $(window).on('resize', function () {
-        // 设置Iframe窗口大小
-        configIframe();
-    }).resize();
-
-    function configIframe() {
-        var $content = $('#content');
-        $content.height($(this).height());
-        $content.width($(this).width());
-        $content.find('iframe').each(function () {
-            $(this).height($content.height());
-            $(this).width($content.width());
-        });
-
-    }
     $(document).ready(function () {
-        // $(".section").css({
-        //     'height': window.innerHeight + 'px'
-        // })
+        $(".section").css({
+            'height': window.innerHeight + 'px'
+        })
     });
     var nowpage = 0;
     //给最大的盒子增加事件监听
