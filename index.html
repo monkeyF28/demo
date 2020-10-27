@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <!--<meta name="viewport" id="viewport"
+        content="width=width-device,initial-scale=1.0,minimum-scale=0.5,maximum-scale=0。5,user-scalable=no"> -->
+    <title>Document</title>
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body onmousewheel="return false;">
+    <div id="content">
+        <div class="section cur" id="main1">
+            <img src="img/logo.png" class="logo animated" alt="">
+            <img src="img/title.png" class="title animated" alt="">
+            <div class="into animated">进入</div>
+            <img src="img/next.png" class="next animated " alt="">
+        </div>
+        <div class="section" id="main2">
+            <img src="img/logo.png" class="logo animated" alt="">
+            <img src="img/title.png" class="title animated" alt="">
+            <div class="time_place">
+                <p><img src="img/time.png" alt="">2020年10月27日（星期一）</p>
+                <p><img src="img/local.png" alt="">北京市通州区西潞苑小区</p>
+            </div>
+            <div class="bottom">
+                <div class="title_text">
+                    活动议程<p></p>
+                </div>
+                <div class="list">
+                    <p class="list_l animated">13:30-14:30 <span>嘉宾签到</span></p>
+                    <p class="list_r animated">13:30-14:30 <span>开场</span></p>
+                    <p class="list_l animated">13:30-14:30 <span>领导致辞</span></p>
+                    <p class="list_r animated">13:30-14:30 <span>智慧零售产品战略分享</span></p>
+                    <p class="list_l animated">13:30-14:30 <span>微盟商超行业战略分享</span></p>
+                    <p class="list_r animated">13:30-14:30 <span>智慧零售战略新品解析</span></p>
+                    <p class="list_l animated">13:30-14:30 <span>新品发布仪式</span></p>
+                    <p class="list_r animated">13:30-14:30 <span>品牌案例分享</span></p>
+                    <p class="list_l animated">13:30-14:30 <span>圆桌论坛：商超数字化“演进之路”</span></p>
+                    <p class="list_r animated">13:30-14:30 <span>活动结束</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="main3">
+            <img src="img/logo.png" class="logo animated" alt="">
+            <img src="img/title.png" class="title animated" alt="">
+            <div class="title_text">
+                <p></p>
+                <span>参加活动</span>
+                <p></p>
+            </div>
+            <div class="input">
+                <p class="animated name input_l">
+                    <img src="img/time.png" alt="">
+                    <span><i>姓</i><i>名</i></span>
+                    <input type="text" name="" id="">
+                </p>
+                <p class="animated company input_r">
+                    <img src="img/time.png" alt="">
+                    <span><i>公</i><i>司</i></span>
+                    <input type="text" name="" id="">
+                </p>
+                <p class="animated job input_l">
+                    <img src="img/time.png" alt="">
+                    <span><i>职</i><i>位</i></span>
+                    <input type="text" name="" id="">
+                </p>
+                <p class="animated phone input_r">
+                    <img src="img/time.png" alt="">
+                    <span><i>手</i><i>机</i><i>号</i></span>
+                    <input type="text" name="" id="">
+                </p>
+                <p class="animated email input_l">
+                    <img src="img/time.png" alt="">
+                    <span><i>邮</i><i>箱</i></span>
+                    <input type="text" name="" id="">
+                </p>
+            </div>
+            <div class="commit">提交</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+<script>
+    var view_num = window.screen.availWidth / 750;
+    document.getElementById("content").setAttribute('content', 'user-scalable=no, width=750, minimum-scale=' + view_num + ', initial-scale=' + view_num + ', maximum-scale=' + view_num + '');
+    $(window).on('resize', function () {
+        // 设置Iframe窗口大小
+        configIframe();
+    }).resize();
+
+    function configIframe() {
+        var $content = $('#content');
+        $content.height($(this).height());
+        $content.width($(this).width());
+        $content.find('iframe').each(function () {
+            $(this).height($content.height());
+            $(this).width($content.width());
+        });
+
+    }
+    $(document).ready(function () {
+        // $(".section").css({
+        //     'height': window.innerHeight + 'px'
+        // })
+    });
+    var nowpage = 0;
+    //给最大的盒子增加事件监听
+    $("#content").swipe({
+        swipe: function (event, direction, distance, duration, fingerCount) {
+            if (direction == "up") {
+                nowpage = nowpage + 1;
+                animate(nowpage)
+            } else if (direction == "down") {
+                nowpage = nowpage - 1;
+                animate(nowpage)
+            }
+            if (nowpage > 2) {
+                nowpage = 2;
+            }
+            if (nowpage < 0) {
+                nowpage = 0;
+            }
+            $("#content").animate({
+                "top": nowpage * -100 + "%"
+            }, 400);
+            $(".section").eq(nowpage).addClass("cur").siblings().removeClass("cur");
+
+        }
+    });
+
+    function animate(nowpage) {
+        if (nowpage == 0) {
+            $("#main1>.logo").addClass("swing")
+            $("#main1>.title").addClass("lightSpeedIn")
+        } else if (nowpage == 1) {
+            $("#main2>.logo").addClass("swing")
+            $("#main2>.title").addClass("lightSpeedIn")
+            $(".list_l").addClass("bounceInLeft")
+            $(".list_r").addClass("bounceInRight")
+        } else if (nowpage == 2) {
+            $("#main3>.logo").addClass("swing")
+            $("#main3>.title").addClass("lightSpeedIn")
+            $(".input_l").addClass("bounceInLeft")
+            $(".input_r").addClass("bounceInRight")
+        }
+    }
+</script>
